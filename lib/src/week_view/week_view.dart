@@ -72,6 +72,9 @@ class WeekView<T> extends StatefulWidget {
   /// Offset of time line
   final double timeLineOffset;
 
+  final int minHour;
+  final int maxHour;
+
   /// Width of week view. If null provided device width will be considered.
   final double? width;
 
@@ -96,6 +99,8 @@ class WeekView<T> extends StatefulWidget {
     this.pageTransitionCurve = Curves.ease,
     this.heightPerMinute = 1,
     this.timeLineOffset = 0,
+    this.minHour = 1,
+    this.maxHour = Constants.hoursADay,
     this.showLiveTimeLineInAllDays = false,
     this.width,
     this.minDay,
@@ -124,6 +129,8 @@ class WeekViewState<T> extends State<WeekView<T>> {
   late double _timeLineWidth;
   late double _hourHeight;
   late double _timeLineOffset;
+  late int _minHour;
+  late int _maxHour;
   late DateTime _currentStartDate;
   late DateTime _currentEndDate;
   late DateTime _maxDate;
@@ -179,6 +186,8 @@ class WeekViewState<T> extends State<WeekView<T>> {
     _hourHeight = widget.heightPerMinute * 60;
     _height = _hourHeight * Constants.hoursADay;
     _timeLineOffset = widget.timeLineOffset;
+    _minHour = widget.minHour;
+    _maxHour = widget.maxHour;
     _pageController = PageController(initialPage: _currentIndex);
     _eventArranger = widget.eventArranger ?? SideEventArranger<T>();
     _timeLineBuilder = widget.timeLineBuilder ?? _defaultTimeLineBuilder;
@@ -285,6 +294,8 @@ class WeekViewState<T> extends State<WeekView<T>> {
                         showLiveLine: widget.showLiveTimeLineInAllDays ||
                             _showLiveTimeIndicator(dates),
                         timeLineOffset: _timeLineOffset,
+                        minHour: _minHour,
+                        maxHour: _maxHour,
                         timeLineWidth: _timeLineWidth,
                         verticalLineOffset: 0,
                         showVerticalLine: true,

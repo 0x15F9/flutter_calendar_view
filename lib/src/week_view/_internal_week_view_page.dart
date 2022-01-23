@@ -50,6 +50,9 @@ class InternalWeekViewPage<T> extends StatelessWidget {
   /// Offset of timeline.
   final double timeLineOffset;
 
+  final int minHour;
+  final int maxHour;
+
   /// Height occupied by one hour time span.
   final double hourHeight;
 
@@ -91,6 +94,8 @@ class InternalWeekViewPage<T> extends StatelessWidget {
     required this.heightPerMinute,
     required this.timeLineWidth,
     required this.timeLineOffset,
+    required this.minHour,
+    required this.maxHour,
     required this.height,
     required this.hourHeight,
     required this.eventArranger,
@@ -197,8 +202,8 @@ class InternalWeekViewPage<T> extends StatelessWidget {
                       hourHeight: hourHeight,
                       height: height,
                       timeLineOffset: timeLineOffset,
-                      minHour: 9,
-                      maxHour: 18,
+                      minHour: minHour,
+                      maxHour: maxHour,
                       timeLineBuilder: timeLineBuilder,
                     ),
                   ],
