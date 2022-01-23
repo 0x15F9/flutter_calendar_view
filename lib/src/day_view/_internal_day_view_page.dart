@@ -50,6 +50,12 @@ class InternalDayViewPage<T> extends StatelessWidget {
   /// Offset for time line widgets.
   final double timeLineOffset;
 
+  /// Starting hour
+  final int minHour;
+
+  /// Ending hour
+  final int maxHour;
+
   /// Height occupied by one hour of time span.
   final double hourHeight;
 
@@ -85,6 +91,8 @@ class InternalDayViewPage<T> extends StatelessWidget {
     required this.eventArranger,
     required this.verticalLineOffset,
     required this.onTileTap,
+    required this.minHour,
+    required this.maxHour,
   }) : super(key: key);
 
   @override
@@ -134,6 +142,8 @@ class InternalDayViewPage<T> extends StatelessWidget {
             hourHeight: hourHeight,
             timeLineBuilder: timeLineBuilder,
             timeLineOffset: timeLineOffset,
+            minHour: minHour,
+            maxHour: maxHour,
             timeLineWidth: timeLineWidth,
             key: ValueKey(heightPerMinute),
           ),

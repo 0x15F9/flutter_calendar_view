@@ -197,6 +197,8 @@ class InternalWeekViewPage<T> extends StatelessWidget {
                       hourHeight: hourHeight,
                       height: height,
                       timeLineOffset: timeLineOffset,
+                      minHour: 9,
+                      maxHour: 18,
                       timeLineBuilder: timeLineBuilder,
                     ),
                   ],

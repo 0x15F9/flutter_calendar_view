@@ -7,7 +7,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../calendar_event_data.dart';
-import '../constants.dart';
 import '../event_arrangers/event_arrangers.dart';
 import '../extensions.dart';
 import '../modals.dart';
@@ -107,6 +106,12 @@ class TimeLine extends StatelessWidget {
   /// Offset for time line
   final double timeLineOffset;
 
+  /// Starting hour
+  final int minHour;
+
+  /// Ending hour
+  final int maxHour;
+
   /// This will display time string in timeline.
   final DateWidgetBuilder timeLineBuilder;
 
@@ -119,6 +124,8 @@ class TimeLine extends StatelessWidget {
       required this.hourHeight,
       required this.height,
       required this.timeLineOffset,
+      required this.minHour,
+      required this.maxHour,
       required this.timeLineBuilder})
       : super(key: key);
 
@@ -134,7 +141,7 @@ class TimeLine extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          for (int i = 1; i < Constants.hoursADay; i++)
+          for (int i = minHour; i < maxHour; i++)
             Positioned(
               top: hourHeight * i - timeLineOffset,
               left: 0,

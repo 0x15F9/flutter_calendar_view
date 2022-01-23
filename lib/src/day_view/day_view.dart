@@ -106,6 +106,9 @@ class DayView<T> extends StatefulWidget {
   /// Default value is 0.
   final double timeLineOffset;
 
+  final int minHour;
+  final int maxHour;
+
   /// Width of day page.
   ///
   /// if null provided then device width will be considered.
@@ -140,6 +143,8 @@ class DayView<T> extends StatefulWidget {
     this.timeLineBuilder,
     this.timeLineWidth,
     this.timeLineOffset = 0,
+    this.minHour = 1,
+    this.maxHour = Constants.hoursADay,
     this.showLiveTimeLineInAllDays = false,
     this.liveTimeIndicatorSettings,
     this.onPageChange,
@@ -162,6 +167,8 @@ class DayViewState<T> extends State<DayView<T>> {
   late double _timeLineWidth;
   late double _hourHeight;
   late double _timeLineOffset;
+  late int _minHour;
+  late int _maxHour;
   late DateTime _currentDate;
   late DateTime _maxDate;
   late DateTime _minDate;
@@ -210,6 +217,8 @@ class DayViewState<T> extends State<DayView<T>> {
     _hourHeight = widget.heightPerMinute * 60;
     _height = _hourHeight * Constants.hoursADay;
     _timeLineOffset = widget.timeLineOffset;
+    _minHour = widget.minHour;
+    _maxHour = widget.maxHour;
     _pageController = PageController(initialPage: _currentIndex);
     _eventArranger = widget.eventArranger ?? SideEventArranger<T>();
     _timeLineBuilder = widget.timeLineBuilder ?? _defaultTimeLineBuilder;
@@ -306,6 +315,8 @@ class DayViewState<T> extends State<DayView<T>> {
                           showLiveLine: widget.showLiveTimeLineInAllDays ||
                               date.compareWithoutTime(DateTime.now()),
                           timeLineOffset: _timeLineOffset,
+                          minHour: _minHour,
+                          maxHour: _maxHour,
                           timeLineWidth: _timeLineWidth,
                           verticalLineOffset: widget.verticalLineOffset,
                           showVerticalLine: widget.showVerticalLine,
